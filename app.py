@@ -72,10 +72,20 @@ if uploaded_file is not None:
     # display Analysis
     if st.sidebar.button("Display Analysis"):
 
+        st.title("Top Statistics")
+        file__ = open("./Data-Inspect.gif", "rb")
+        contents = file__.read()
+        data_url = base64.b64encode(contents).decode("utf-8")
+        file__.close()
+
+        st.markdown(
+            f'<img src="data:image/gif;base64,{data_url}" style="margin-bottom:40px;width:100%;"  alt="animate gif">',
+            unsafe_allow_html=True,
+        )
+
         # Stats Area
         num_messages, words, num_media_messages, num_links, df = helper.fetch_stats(
             selected_user, df)
-        st.title("Top Statistics")
 
         # display user specific data
         if selected_user != 'All users':
