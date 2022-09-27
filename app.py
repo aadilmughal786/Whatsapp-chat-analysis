@@ -1,36 +1,57 @@
+import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 import chatToDataframe
 import analysisAPI as helper
 import webbrowser
+import base64
 
-import matplotlib.pyplot as plt
-plt.rcParams["font.serif"] = "cmr10"
 
-st.title("✋Hi Everyone My name is Aadil.")
-st.header("This is the whatApp chat Analyser Web App to get insight from your Groups as well as your individual chats.")
+col1, col2 = st.columns(2)
+
+with col1:
+    file_ = open("./animate.gif", "rb")
+    contents = file_.read()
+    data_url = base64.b64encode(contents).decode("utf-8")
+    file_.close()
+
+    st.markdown(
+        f'<img src="data:image/gif;base64,{data_url}" style="margin-bottom:40px" width=300 alt="animate gif">',
+        unsafe_allow_html=True,
+    )
+with col2:
+    st.title("😎 Hi Everyone My name is Aadil.")
+    st.markdown(f"<h4>This is the whatApp chat Analyser Web App to get insight from your Groups as well as your individual chats.</h4>",
+                unsafe_allow_html=True)
+
 
 col1, col2, col3, col4 = st.columns(4)
 with col1:
-    if st.button("   My Resume   "):
+    if st.button("🫧 My Resume   "):
         webbrowser.open('https://aadilmughal786.github.io/My_web_resume')
 with col2:
-    if st.button("  My Githib    "):
+    if st.button("🫧 My Githib"):
         webbrowser.open('https://github.com/aadilmughal786')
 with col3:
-    if st.button("  My Linkedin  "):
+    if st.button("🫧 My Linkedin"):
         webbrowser.open(
             'https://www.linkedin.com/in/aadil-mugal-146bb818a')
 with col4:
-    if st.button(" Tutorial link "):
+    if st.button("🫧 Tutorial link"):
         webbrowser.open('https://www.youtube.com/watch?v=Q0QwvZKG_6Q')
 
-st.header("Dates must be in 24 hours format")
+st.markdown(f"<p style='text-align: center;margin:10px 0px 10px;'>{'🌱'*35}</p>",
+            unsafe_allow_html=True)
 
 
-st.sidebar.title("Whatsapp Chat Analyzer")
+st.markdown("<h1 style='text-align: center;color:green;'>🕐Dates must be in 24 hours format</h1>",
+            unsafe_allow_html=True)
 
-uploaded_file = st.sidebar.file_uploader("Choose a file")
+st.sidebar.markdown("<h1 style='text-align: center;'>✨</h1>",
+                    unsafe_allow_html=True)
+st.sidebar.title("Whatsapp Chat Analyser")
+
+uploaded_file = st.sidebar.file_uploader("Choose a chat file")
 if uploaded_file is not None:
     bytes_data = uploaded_file.getvalue()
     data = bytes_data.decode("utf-8")
@@ -107,7 +128,8 @@ if uploaded_file is not None:
 
         try:
             st.title("Top 5 emojis pi-chart")
-            emojiTop5 = ["Emoji-0", "Emoji-1", "Emoji-2", "Emoji-3", "Emoji-4"]
+            emojiTop5 = ["Emoji-0", "Emoji-1",
+                         "Emoji-2", "Emoji-3", "Emoji-4"]
             fig, ax = plt.subplots()
             ax.pie(emoji_df["Frequincy"].head(),
                    labels=emojiTop5, autopct="%0.2f")
@@ -157,4 +179,8 @@ if uploaded_file is not None:
         ax = sns.heatmap(user_heatmap)
         st.pyplot(fig)
 
-        st.header("Thanks for using this App")
+        st.markdown("<h2 style='text-align: center;'>Thanks for using this App.</h2>",
+                    unsafe_allow_html=True)
+
+        st.markdown("<h4 style='text-align: center;margin-top:80px;'>Made by Aadil Mugal Made with <span style='color:red;'>🎔</span></h4>",
+                    unsafe_allow_html=True)
