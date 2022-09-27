@@ -7,8 +7,8 @@ import webbrowser
 import matplotlib.pyplot as plt
 plt.rcParams["font.serif"] = "cmr10"
 
-st.header("Hi Everyone My name is Aadil.")
-st.title("This is the whatApp chat Analyser Web App to get insight from your Groups as well as your individual chats.")
+st.title("Hi Everyone My name is Aadil.")
+st.header("This is the whatApp chat Analyser Web App to get insight from your Groups as well as your individual chats.")
 
 col1, col2, col3, col4 = st.columns(4)
 with col1:
